@@ -110,14 +110,70 @@ var practice = (function() {
                 return str;
             }
 
-            return boardStr(row, column);
+            return boardStr(); //无需传惨，在闭包中。
         }
+
+        //3.13.1
+        function min(a,b) {
+            return a <= b ? a: b;
+        }
+
+        //3.13.2
+        function isEven(number) {
+            var number = Number(number);
+
+            if(!isNaN(number)){
+                if(number == 0){
+                    return true;
+                }
+                else if(number ==1){
+                    return false;
+                }
+                else if(number <0){
+                    return isEven(-number); //负数的情况转换成正数。
+                }
+                else{
+                    return isEven(number-2);
+                }
+            }
+            //记得递归的每一步都必须return，否则得不到返回值。
+        }
+
+        //3.13.3
+        function countBs(str) {
+            var count = 0;
+            for(var i = 0; i<str.length; i++){
+                if(str.charAt(i) === "B"){
+                    count++;
+                }
+            }
+            return count;
+        }
+        function countChar(str,char){
+            var count = 0;
+            for(var i=0, len = str.length; i<len; i++){
+                if(str.charAt(i) == char){
+                    count++;
+                }
+            }
+            return count;
+        }
+
         //返回一个对象，提供公共接口
     return {
         div3or5: div3or5,
-        chessboard: chessboard
+        chessboard: chessboard,
+        min: min,
+        isEven: isEven,
+        countBs: countBs,
+        countChar: countChar
+
     }
 })();
 
-var board = practice.chessboard(10,10);
-console.log(board);
+// var board = practice.chessboard(8,8);
+// console.log(board);
+// console.log(practice.min(9,6));
+// console.log(practice.isEven(-1));
+console.log(practice.countBs("asdfBBasdf"));
+console.log(practice.countChar("asdfBBasdf","g"));
