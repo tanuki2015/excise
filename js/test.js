@@ -383,3 +383,74 @@ function gatherCorrelations(journal){
 }
 var correlations = gatherCorrelations(JOURNAL);
 console.dir(correlations);
+
+//4.17练习
+var practice4 = (function() {
+    function range(start, end) {
+        var numbers = [];
+        for (var i = start; i <= end; i++) {
+            numbers.push(i);
+        }
+        return numbers;
+    }
+
+    function rangeStep(start, end, step){
+        var numbers = [];
+        step = step < 0 ? -step: step;
+        for(var i = start; i<=end; i += step){
+            numbers.push(i);
+        }
+        return numbers;
+    }
+
+    function sum(arr){
+        var result = 0;
+        for(var i = 0, max = arr.length; i<max; i++){
+            result += arr[i];
+        }
+        return result;
+    }
+
+    function reverseArray(Arr) {
+        var newArray = [];
+        for(var i = Arr.length; i>0; i--){
+            newArray.push(Arr[i-1]);
+        }
+        return newArray;
+    }
+
+    function reverseArrayInPlace(Arr) {
+        for(var i = 0; i < Math.floor(Arr.length/2); i++ ){
+            var temp = Arr[i];
+            Arr[i] = Arr[Arr.length-1-i];
+            Arr[Arr.length-1-i] = temp;
+        }
+        return Arr;
+    }
+
+    function arrayToList(array) {
+      var list = null;
+      for (var i = array.length - 1; i >= 0; i--)
+        list = {value: array[i], rest: list};
+      return list;
+    }
+
+
+    return {
+        range: range,
+        rangeStep: rangeStep,
+        sum: sum,
+        reverseArray: reverseArray,
+        reverseArrayInPlace: reverseArrayInPlace,
+        arrayToList: arrayToList
+    }
+})();
+
+// console.log(practice4.sum(practice4.range(1, 10)));
+// console.log(practice4.rangeStep(1, 10,-2));
+// console.log(practice4.reverseArray([1,2,3,4,5]));
+// var arr = [1,2,3,4,5];
+// practice4.reverseArrayInPlace(arr);
+// console.log(arr);
+
+console.dir(practice4.arrayToList([1,2,3]));
