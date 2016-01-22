@@ -453,4 +453,23 @@ var practice4 = (function() {
 // practice4.reverseArrayInPlace(arr);
 // console.log(arr);
 
-console.dir(practice4.arrayToList([1,2,3]));
+// console.dir(practice4.arrayToList([1,2,3]));
+
+//高阶函数
+function f() {
+    console.log(arguments);
+}
+function transparentWrapping(f) {
+    return function() {
+        return f.apply(null, arguments);
+        // return f(arguments);
+        /*
+        * 上面两句是有区别的，f.apply(null,arguments)执行时，拿到arguments对象后，一项
+        * 一项的把参数传给函数f，大致相当于f(arg1,arg2,arg3...)这样。
+        * 而f(arguments)执行时，直接拿到arguments对象扔给了函数f，大致是这样：
+        * f([arg1,arg2,arg3...]). 显然f函数得到的不是多个参数，而是一个对象--类数组。当然
+        * 这不是我想要的。
+        */
+    }
+}
+var result = transparentWrapping(f)("123","456");
